@@ -31,7 +31,6 @@ var settings = {
 	ipURL: 'http://what-is-my-ip.net/?json', // Address of service which returns the current outward facing IP address as a JSON compatible string
 	updateURL: 'https://cp.dnsmadeeasy.com/servlet/updateip?username={{settings.username}}&password={{settings.password}}&id={{domain.id}}&ip={{domain.newIP}}',
 	delay: 2 * 60 * 1000, // 2 Minutes - delay by this period before rechecking the IP
-	delay: 5 * 1000
 };
 // }}}
 // Pre-load sanity checks {{{
@@ -134,7 +133,7 @@ var cycle = function() {
 					if (err) return next(err);
 					if (res.statusCode != 200) return next('Failed to set Dyn DNS of ' + domain + ' (ID #' + id + '), return code: ' + res.statusCode + ' - ' + res.text);
 					if (res.body.err) return next(res.body.err);
-					console.log(colors.grey(this.time), 'Domain', colors.cyan(domain), '=>', colors.cyan(self.ip), colors.green('Success'));
+					console.log(colors.grey(self.time), 'Domain', colors.cyan(domain), '=>', colors.cyan(self.ip), colors.green('Success'));
 					next();
 				});
 		})
