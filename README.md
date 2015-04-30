@@ -37,4 +37,6 @@ Run `dmedyn` to update your IP just once:
 
 OR run `dmedyn` within a container like [forever](https://github.com/foreverjs/forever) to constantly run dmedyn in `--forever` mode:
 
-	forever start dmedyn -vf
+	forever start `which dmedyn` -vf
+
+The `which dmedync` bit is because forever needs to know the path of the actual JS file to monitor it.
