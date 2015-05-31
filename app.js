@@ -91,6 +91,8 @@ var cycle = function() {
 			request
 				.get(settings.ipURL)
 				.timeout(settings.timeout)
+				.set('X-Requested-With', 'XMLHttpRequest')
+				.set('Cache-Control', 'no-cache,no-store,must-revalidate,max-age=-1')
 				.set('Content-Type', 'application/json')
 				.set('Accept', 'application/json, text/javascript, */*; q=0.01')
 				.end(function(err, res) {
