@@ -55,6 +55,6 @@ Running as a Daemon with PM2
 ----------------------------
 To use `dmedyn` within a process container like [pm2](http://pm2.keymetrics.io), run dmedyn in `--daemon` mode:
 
-	pm2 start `which dmedyn` -vd
+	pm2 start `which dmedyn` --name dmedyn -- -vd
 
 The `which dmedync` bit is because PM2 needs to know the path of the actual JS file to monitor it.
