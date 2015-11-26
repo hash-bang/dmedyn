@@ -11,7 +11,7 @@ var request = require('superagent');
 program
 	.version(require('./package.json').version)
 	.usage('[options]')
-	.option('-f, --forever', 'Constantly try to update the IP')
+	.option('-d, --daemon', 'Constantly try to update the IP')
 	.option('-n, --dryrun', 'Dont actually run any commands, just output what would have run')
 	.option('-v, --verbose', 'Be verbose')
 	.parse(process.argv);
@@ -61,8 +61,8 @@ if (settings.acceptAllCerts) {
 // }}}
 // }}}
 
-var runCount = 0; // What loop number we are in (if we are in `--forever` mode)
-var oldIP = null; // The old IP address (if we are in `--forever` mode)
+var runCount = 0; // What loop number we are in (if we are in `--daemon` mode)
+var oldIP = null; // The old IP address (if we are in `--daemon` mode)
 
 var cycle = function() {
 	async()
@@ -76,7 +76,7 @@ var cycle = function() {
 				next();
 			// }}}
 		})
-		.then(function(next) { // Delay before next cycle if in forever mode
+		.then(function(next) { // Delay before next cycle if in daemon mode
 			if (runCount++ > 0) {
 				if (program.verbose) console.log(colors.grey(this.time), 'Waiting', colors.cyan(settings.delay + 's'));
 				setTimeout(next, settings.delay);
@@ -148,7 +148,7 @@ var cycle = function() {
 				console.log(colors.grey(this.time), 'All done');
 			}
 
-			if (program.forever) {
+			if (program.daemon) {
 				setTimeout(cycle);
 			} else {
 				process.exit(err ? 1 : 0);

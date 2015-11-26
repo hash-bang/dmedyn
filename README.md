@@ -11,7 +11,7 @@ Basic operation
 1. Check the current outward facing IP address by paging http://what-is-my-ip.net (this can be changed)
 2. If the IP has changed...
 3. Update each domain A record with the new IP
-4. If we are in `--forever` mode, goto 1.
+4. If we are in `--daemon` mode, goto 1.
 
 
 Installation and usage
@@ -31,12 +31,30 @@ Create a `~/.dmedyn.json` file containing your site configuration such as the be
 		}
 	}
 
+
+Running DMEDyn
+==============
+
+Running in the foreground
+-------------------------
 Run `dmedyn` to update your IP just once:
 
 	dmedyn
 
-OR run `dmedyn` within a container like [forever](https://github.com/foreverjs/forever) to constantly run dmedyn in `--forever` mode:
 
-	forever start `which dmedyn` -vf
+Running as a Daemon with Forever
+--------------------------------
+To use `dmedyn` within a process container like [forever](https://github.com/foreverjs/forever), run dmedyn in `--daemon` mode:
+
+	forever start `which dmedyn` -vd
 
 The `which dmedync` bit is because forever needs to know the path of the actual JS file to monitor it.
+
+
+Running as a Daemon with PM2
+----------------------------
+To use `dmedyn` within a process container like [pm2](http://pm2.keymetrics.io), run dmedyn in `--daemon` mode:
+
+	pm2 start `which dmedyn` -vd
+
+The `which dmedync` bit is because PM2 needs to know the path of the actual JS file to monitor it.
