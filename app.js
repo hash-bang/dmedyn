@@ -106,7 +106,7 @@ var cycle = function() {
 					if (res.body.err) return next(res.body.err);
 					var foundIP = /"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"/.exec(res.text);
 					if (foundIP) {
-						next(null, foundIP[0]);
+						next(null, foundIP[1]);
 					} else {
 						next('IP format is invalid - ' + res.text);
 					}
