@@ -28,9 +28,14 @@ var settings = {
 		// You can find the record ID by clicking on the link in the DME admin screen
 		// e.g. 'yourdomain.com': 12345
 	},
-	ipURL: 'http://what-is-my-ip.net/?json', // Address of service which returns the current outward facing IP address as a JSON compatible string
 	updateURL: 'https://cp.dnsmadeeasy.com/servlet/updateip?username={{settings.username}}&password={{settings.password}}&id={{domain.id}}&ip={{domain.newIP}}',
 	delay: 2 * 60 * 1000, // 2 Minutes - delay by this period before rechecking the IP
+
+	// The ip resolution service to use
+	// Each service must return basic text (JSON prefered). The first thing that looks like an IP address enclosed in speach marks (e.g. "123.123.123.123")
+	// Alternates:
+	// 	'http://what-is-my-ip.net/?json', // Seems down at the moment
+	ipURL: 'https://api.ipify.org?format=json',
 };
 // }}}
 // Pre-load sanity checks {{{
@@ -99,7 +104,7 @@ var cycle = function() {
 					if (err) return next(err);
 					if (res.statusCode != 200) return next("Failed to get current IP address, return code: " + res.statusCode + ' - ' + res.text);
 					if (res.body.err) return next(res.body.err);
-					var foundIP = /^"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"$/.exec(res.text);
+					var foundIP = /"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"/.exec(res.text);
 					if (foundIP) {
 						next(null, foundIP[0]);
 					} else {

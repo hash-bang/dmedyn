@@ -1,6 +1,6 @@
 {
   "name": "dmedyn",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "DNS Made Easy - Dynamic DNS updater",
   "main": "app.js",
   "bin": {

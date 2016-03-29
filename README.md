@@ -8,7 +8,7 @@ This simple script updates your [DNSMadeEasy](http://dnsmadeeasy.com) account wi
 Basic operation
 ---------------
 
-1. Check the current outward facing IP address by paging http://what-is-my-ip.net (this can be changed)
+1. Check the current outward facing IP address by alling [ipify.org](https://www.ipify.org) (this can be changed in settings)
 2. If the IP has changed...
 3. Update each domain A record with the new IP
 4. If we are in `--daemon` mode, goto 1.
