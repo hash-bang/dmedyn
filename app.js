@@ -99,9 +99,12 @@ var cycle = function() {
 					if (err) return next(err);
 					if (res.statusCode != 200) return next("Failed to get current IP address, return code: " + res.statusCode + ' - ' + res.text);
 					if (res.body.err) return next(res.body.err);
-					var foundIP = /^"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"$/.exec(res.text)[1];
-					if (!foundIP) return next('IP format is invalid - ' + res.text);
-					next(null, foundIP);
+					var foundIP = /^"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"$/.exec(res.text);
+					if (foundIP) {
+						next(null, foundIP[0]);
+					} else {
+						next('IP format is invalid - ' + res.text);
+					}
 				});
 		})
 		.then(function(next) {
