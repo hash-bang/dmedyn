@@ -1,6 +1,6 @@
 {
   "name": "dmedyn",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "DNS Made Easy - Dynamic DNS updater",
   "main": "app.js",
   "bin": {
@@ -14,11 +14,11 @@
   "author": "Matt Carter <m@ttcarter.com>",
   "license": "MIT",
   "dependencies": {
-    "async-chainable": "^1.7.10",
-    "colors": "^1.1.0",
-    "commander": "^2.8.1",
-    "lodash": "^3.7.0",
-    "mustache": "^2.0.0",
-    "superagent": "^1.2.0"
+    "async-chainable": "^1.7.15",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "lodash": "^4.6.1",
+    "mustache": "^2.2.1",
+    "superagent": "^1.8.3"
   }
 }
