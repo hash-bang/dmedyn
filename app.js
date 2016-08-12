@@ -39,12 +39,15 @@ var settings = {
 };
 // }}}
 // Pre-load sanity checks {{{
-if (!process.env || !process.env.HOME) {
+	
+if (!process.env || !process.env.HOME || !process.env.HOMEPATH) {
 	console.log('Environment variable HOME not found');
 }
+var homePath = process.env.HOME || process.env.HOMEPATH;
+
 // }}}
 // Load settings {{{
-var settingsPath = process.env.HOME + '/.dmedyn.json';
+var settingsPath = homePath + '/.dmedyn.json';
 try {
 	var data = fs.readFileSync(settingsPath);
 	var jSettings = JSON.parse(data);
