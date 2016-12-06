@@ -8,7 +8,7 @@ This simple script updates your [DNSMadeEasy](http://dnsmadeeasy.com) account wi
 Basic operation
 ---------------
 
-1. Check the current outward facing IP address by alling [ipify.org](https://www.ipify.org) (this can be changed in settings)
+1. Check the current outward facing IP address by calling [ipify.org](https://www.ipify.org) (this can be changed in settings)
 2. If the IP has changed...
 3. Update each domain A record with the new IP
 4. If we are in `--daemon` mode, goto 1.
@@ -31,6 +31,7 @@ Create a `~/.dmedyn.json` file containing your site configuration such as the be
 		}
 	}
 
+The username is your DME username. The password is created when using the "Dynamic DNS" option of your DNS record in the DME admin screen. You'll also find a "Dynamic DNS ID" in the DME admin screen which will need to be used in place of the 11111111, 22222222, etc values.
 
 Running DMEDyn
 ==============
